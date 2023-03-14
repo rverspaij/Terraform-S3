@@ -6,7 +6,7 @@ resource "azurerm_network_interface" "nic" {
 
   ip_configuration {
     name                          = "DMZ-ipconfig"
-    subnet_id                     = azurerm_subnet.DMZ.id
+    subnet_id                     = azurerm_subnet.dmz.id
     private_ip_address_allocation = "Dynamic"
   }
 }

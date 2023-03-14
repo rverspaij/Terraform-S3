@@ -14,3 +14,13 @@ variable "projName" {
   description = "This will be the main name in all your resources, keep in mind this name will change depending on what resource is being created."
 }
 
+variable "userName" {
+  type = string
+  description = "The username that you want to use for your resources that require a login."
+}
+
+variable "password" {
+  type = string
+  sensitive = true
+  description = "The password that you would like to use for your resources that require one."
+}
