@@ -3,14 +3,14 @@ resource "azurerm_linux_virtual_machine" "virtualMachine" {
   name = "${var.projName}-vm-${count.index}"
   location = var.default_location
   resource_group_name = azurerm_resource_group.rg.name
-  size = "Standard_1Bs"
-  admin_username = "AdminRaoul"
-  admin_password = "Admin01!Raoul"
+  size = "Standard_B1s"
+  admin_username = var.userName
+  admin_password = var.password
+  disable_password_authentication = false
 
   network_interface_ids = [azurerm_network_interface.nic[count.index].id]
 
   os_disk {
-    name = "vm-osdisk"
     caching = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
@@ -19,6 +19,10 @@ resource "azurerm_linux_virtual_machine" "virtualMachine" {
     publisher = "Canonical"
     offer = "UbuntuServer"
     sku = "18.04-LTS"
-    version = "Latest"
+    version = "latest"
   }
+
+  depends_on = [
+    azurerm_network_interface.nic
+  ]
 }
